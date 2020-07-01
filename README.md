@@ -2,6 +2,11 @@
 
 > Une petit logiciel permettant d'afficher les sprites des pokémon que souhaite afficher un streamer pokémon
 
+<p align="center">
+  <img width="500" src="https://i.imgur.com/mlQmCao.png"/>
+  <img width="500" src="https://i.imgur.com/3uRnbQT.png"/>
+</p>
+
 #### Build Setup
 
 ``` bash
