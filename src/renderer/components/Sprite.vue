@@ -24,14 +24,13 @@
             :style="imgStyle"
           />
         </div>
-        <b-button-group size="sm" class="toolbar rounded-circle">
-          <b-button @click="toLeft" v-if="index > 0" class="rounded-left-pill">
+        <b-button-group size="sm" class="toolbar rounded-pill overflow-hidden">
+          <b-button @click="toLeft" v-if="index > 0">
             <b-icon-chevron-left class="py-1"></b-icon-chevron-left>
           </b-button>
           <b-button
             @click="toRight"
             v-if="index < (spritesLength-1)"
-            :class="index > 0 ? '' : 'rounded-left-pill'"
           >
             <b-icon-chevron-right class="py-1"></b-icon-chevron-right>
           </b-button>
@@ -39,7 +38,6 @@
             @click="deleteSprite"
             variant="danger"
             class="rounded-right-pill"
-            :class="spritesLength > 1 ? '' : 'rounded-left-pill'"
           >
             <b-icon-x></b-icon-x>
           </b-button>
