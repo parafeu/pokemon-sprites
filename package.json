@@ -1,9 +1,9 @@
 {
   "name": "pokemon-sprites",
-  "version": "0.0.1",
-  "author": "Alexandre Muhl <alexandre@netdev.fr>",
-  "description": "An electron-vue project",
-  "license": null,
+  "version": "0.1.0",
+  "author": "Alexandre Muhl <contact@alexandre-muhl.fr>",
+  "description": "",
+  "license": "mit",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -41,22 +41,24 @@
       ]
     },
     "mac": {
-      "icon": "build/icons/icon.icns"
+      "icon": "build/icons/icon.png"
     },
     "win": {
-      "icon": "build/icons/icon.ico"
+      "icon": "build/icons/icon.png"
     },
     "linux": {
-      "icon": "build/icons"
+      "icon": "build/icons/icon.png"
     }
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
+    "electron-config": "^2.0.0",
     "jquery": "^3.5.1",
     "vue": "^2.5.16",
     "vue-electron": "^1.0.6",
+    "vue-multiselect": "^2.1.6",
     "vuex": "^3.5.1",
     "vuex-electron": "^1.0.3"
   },

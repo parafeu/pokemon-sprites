@@ -1,2 +1,45 @@
 @import 'node_modules/bootstrap/scss/bootstrap';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+
+html,
+body {
+  background-color: transparent !important;
+  overflow: hidden;
+}
+
+#settings {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  z-index: 99;
+}
+
+.content {
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+
+.dragbar {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+}
+
+.dragbar .navbar-nav {
+  -webkit-app-region: no-drag;
+}
+
+.sprites-grid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sprites-grid > * {
+  position: relative;
+  width: 33%;
+}
+
+.settings-button {
+  min-width: 150px;
+}

@@ -9,29 +9,46 @@ export default new Vuex.Store({
   state: {
     transparent: false,
     pokeball: null,
-    gap: 0,
-    scale: 1,
-    padding: 0,
-    sprites: {
-        0: null,
-        1: null,
-        2: null,
-        3: null,
-        4: null,
-        5: null,
-    }
+    gap: 50,
+    scale: 2.5,
+    padding: 100,
+    bwSprites: false,
+    sprites: [],
   },
   mutations: {
     setOption(state, { field, value }) {
-        state[field] = value;
+      state[field] = value;
     },
-    setSprite(state, { key, value }) {
-        Vue.set(state.sprites, key, value);
+    addSprite(state, value) {
+      if(state.sprites.length < 6) {
+        Vue.set(state.sprites, state.sprites.length, value);
+      }
+    },
+    toLeftSprite(state, index) {
+      let newSprites = Array.from(state.sprites);
+      let b = newSprites[index -1];
+      newSprites[index - 1] = newSprites[index];
+      newSprites[index] = b;
+
+      Vue.set(state, "sprites", newSprites);
+    },
+    toRightSprite(state, index) {
+      let newSprites = Array.from(state.sprites);
+      let b = newSprites[index + 1];
+      newSprites[index + 1] = newSprites[index];
+      newSprites[index] = b;
+
+      Vue.set(state, "sprites", newSprites);
+    },
+    deleteSprite(state, index) {
+      let newSprites = Array.from(state.sprites);
+      newSprites.splice(index, 1);
+      Vue.set(state, "sprites", newSprites);
     }
   },
   plugins: [
     createPersistedState({
-        whitelist: ["setOption"]
+      whitelist: ["setOption", "addSprite", "toLeftSprite", "toRightSprite", "deleteSprite"]
     }),
   ],
 })

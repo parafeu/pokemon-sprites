@@ -1,5 +1,4 @@
-import { app, BrowserWindow } from 'electron'
-
+import { app, BrowserWindow, ipcMain } from 'electron'
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
@@ -13,24 +12,48 @@ const winURL = process.env.NODE_ENV === 'development'
   ? `http://localhost:9080`
   : `file://${__dirname}/index.html`
 
-function createWindow () {
+const Config = require('electron-config')
+const config = new Config();
+
+function createWindow() {
   /**
    * Initial window options
    */
-  mainWindow = new BrowserWindow({
-    height: 563,
+  let opts = {
+    height: 900,
     useContentSize: true,
     transparent: true,
     frame: false,
     width: 1000
-  })
+  }
+
+  Object.assign(opts, config.get('winBounds'));
+
+  mainWindow = new BrowserWindow(opts)
 
   mainWindow.loadURL(winURL)
+
+  mainWindow.on('close', () => {
+    config.set('winBounds', mainWindow.getBounds())
+  });
 
   mainWindow.on('closed', () => {
     mainWindow = null
   })
 }
+
+var subscribeWindow = null
+
+ipcMain.on('vuex-subscribe', (event) => {
+  console.log(["subscribed"]);
+  subscribeWindow = event.sender;
+})
+
+ipcMain.on('vuex-mutation', (event, mutation) => {
+  if(subscribeWindow) {
+    subscribeWindow.send('vuex-mutation', mutation);
+  }
+})
 
 app.on('ready', createWindow)
 
