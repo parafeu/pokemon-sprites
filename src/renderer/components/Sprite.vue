@@ -1,49 +1,40 @@
 <template>
-  <div :key="sprite">
-    <div class="sprite">
-      <div class="sprite-ball" :style="ballStyle"></div>
-      <template v-if="sprite">
-        <div class="sprite-img">
-          <template v-if="bwSprites">
-            <img
-              v-if="!bwError"
-              :src="'https://play.pokemonshowdown.com/sprites/gen5ani/' + sprite + '.gif'"
-              :style="imgStyle"
-              @error="bwError = true"
-            />
-            <img
-              v-else
-              :src="'https://play.pokemonshowdown.com/sprites/gen5/' + sprite + '.png'"
-              :style="imgStyle"
-              @error="bwError = true"
-            />
-          </template>
+  <div :key="sprite" class="sprite">
+    <div class="sprite-ball" :style="ballStyle"></div>
+    <template v-if="sprite">
+      <div class="sprite-img">
+        <template v-if="bwSprites">
+          <img
+            v-if="!bwError"
+            :src="'https://play.pokemonshowdown.com/sprites/gen5ani/' + sprite + '.gif'"
+            :style="imgStyle"
+            @error="bwError = true"
+          />
           <img
             v-else
-            :src="'https://play.pokemonshowdown.com/sprites/ani/' + sprite + '.gif'"
+            :src="'https://play.pokemonshowdown.com/sprites/gen5/' + sprite + '.png'"
             :style="imgStyle"
+            @error="bwError = true"
           />
-        </div>
-        <b-button-group size="sm" class="toolbar rounded-pill overflow-hidden">
-          <b-button @click="toLeft" v-if="index > 0">
-            <b-icon-chevron-left class="py-1"></b-icon-chevron-left>
-          </b-button>
-          <b-button
-            @click="toRight"
-            v-if="index < (spritesLength-1)"
-          >
-            <b-icon-chevron-right class="py-1"></b-icon-chevron-right>
-          </b-button>
-          <b-button
-            @click="deleteSprite"
-            variant="danger"
-            class="rounded-right-pill"
-          >
-            <b-icon-x></b-icon-x>
-          </b-button>
-        </b-button-group>
-      </template>
-    </div>
+        </template>
+        <img
+          v-else
+          :src="'https://play.pokemonshowdown.com/sprites/ani/' + sprite + '.gif'"
+          :style="imgStyle"
+        />
+      </div>
+      <b-button-group size="sm" class="toolbar rounded-pill overflow-hidden">
+        <b-button @click="toLeft" v-if="index > 0">
+          <b-icon-chevron-left class="py-1"></b-icon-chevron-left>
+        </b-button>
+        <b-button @click="toRight" v-if="index < (spritesLength-1)">
+          <b-icon-chevron-right class="py-1"></b-icon-chevron-right>
+        </b-button>
+        <b-button @click="deleteSprite" variant="danger" class="rounded-right-pill">
+          <b-icon-x></b-icon-x>
+        </b-button>
+      </b-button-group>
+    </template>
   </div>
 </template>
 
@@ -107,7 +98,6 @@ export default {
 <style lang="scss">
 .sprite {
   position: relative;
-  padding-bottom: 100%;
 
   .sprite-ball {
     position: absolute;

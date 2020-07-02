@@ -24,7 +24,10 @@ function createWindow() {
     useContentSize: true,
     transparent: true,
     frame: false,
-    width: 1000
+    width: 1000,
+    webPreferences: {
+      nodeIntegration: true
+    }
   }
 
   Object.assign(opts, config.get('winBounds'));
@@ -50,7 +53,7 @@ ipcMain.on('vuex-subscribe', (event) => {
 })
 
 ipcMain.on('vuex-mutation', (event, mutation) => {
-  if(subscribeWindow) {
+  if (subscribeWindow) {
     subscribeWindow.send('vuex-mutation', mutation);
   }
 })

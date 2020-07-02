@@ -10,10 +10,12 @@ export default new Vuex.Store({
     transparent: false,
     pokeball: null,
     gap: 50,
+    gridGap: 0,
     scale: 2.5,
     padding: 100,
     bwSprites: false,
     sprites: [],
+    mode: "3x2"
   },
   mutations: {
     setOption(state, { field, value }) {
