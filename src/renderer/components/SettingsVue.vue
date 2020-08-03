@@ -8,6 +8,7 @@
       </b-navbar-nav>
     </b-navbar>
     <b-container fluid id="settings" class="my-2">
+      <b-button @click="setToDefault" class="mb-2">Valeurs par défault</b-button>
       <b-form-file
         class="mb-2"
         placeholder="Choisir un fichier pour changer le fond pokéball (png, jpg, svg)"
@@ -174,8 +175,8 @@ export default {
     minimize() {
       remote.getCurrentWindow().minimize();
     },
-    test(value) {
-      console.log(value);
+    setToDefault() {
+      this.$store.commit('setToDefault')
     }
   }
 };

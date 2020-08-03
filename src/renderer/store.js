@@ -22,13 +22,13 @@ export default new Vuex.Store({
       state[field] = value;
     },
     addSprite(state, value) {
-      if(state.sprites.length < 6) {
+      if (state.sprites.length < 6) {
         Vue.set(state.sprites, state.sprites.length, value);
       }
     },
     toLeftSprite(state, index) {
       let newSprites = Array.from(state.sprites);
-      let b = newSprites[index -1];
+      let b = newSprites[index - 1];
       newSprites[index - 1] = newSprites[index];
       newSprites[index] = b;
 
@@ -46,6 +46,22 @@ export default new Vuex.Store({
       let newSprites = Array.from(state.sprites);
       newSprites.splice(index, 1);
       Vue.set(state, "sprites", newSprites);
+    },
+    setToDefault(state) {
+      let defaultState = {
+        transparent: false,
+        pokeball: null,
+        gap: 50,
+        gridGap: 0,
+        scale: 2.5,
+        padding: 100,
+        bwSprites: false,
+        sprites: [],
+        mode: "3x2"
+      };
+      Object.keys(defaultState).forEach((key) => {
+        Vue.set(state, key, defaultState[key])
+      })
     }
   },
   plugins: [
