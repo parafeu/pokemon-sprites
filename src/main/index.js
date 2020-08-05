@@ -1,18 +1,22 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain } from "electron";
+import path from "path";
 /**
  * Set `__static` path to static files in production
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/using-static-assets.html
  */
-if (process.env.NODE_ENV !== 'development') {
-  global.__static = require('path').join(__dirname, '/static').replace(/\\/g, '\\\\')
+if (process.env.NODE_ENV !== "development") {
+  global.__static = require("path")
+    .join(__dirname, "/static")
+    .replace(/\\/g, "\\\\");
 }
 
-let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:9080`
-  : `file://${__dirname}/index.html`
+let mainWindow;
+const winURL =
+  process.env.NODE_ENV === "development"
+    ? `http://localhost:9080`
+    : `file://${__dirname}/index.html`;
 
-const Config = require('electron-config')
+const Config = require("electron-config");
 const config = new Config();
 
 function createWindow() {
@@ -26,51 +30,51 @@ function createWindow() {
     frame: false,
     width: 1000,
     webPreferences: {
-      nodeIntegration: true
-    }
-  }
+      nodeIntegration: true,
+    },
+  };
 
-  Object.assign(opts, config.get('winBounds'));
+  Object.assign(opts, config.get("winBounds"));
 
-  mainWindow = new BrowserWindow(opts)
+  mainWindow = new BrowserWindow(opts);
 
-  mainWindow.loadURL(winURL)
+  mainWindow.loadURL(winURL);
 
-  mainWindow.on('close', () => {
-    config.set('winBounds', mainWindow.getBounds())
+  mainWindow.on("close", () => {
+    config.set("winBounds", mainWindow.getBounds());
   });
 
-  mainWindow.on('closed', () => {
-    mainWindow = null
-  })
+  mainWindow.on("closed", () => {
+    mainWindow = null;
+  });
 }
 
-var subscribeWindow = null
+var subscribeWindow = null;
 
-ipcMain.on('vuex-subscribe', (event) => {
+ipcMain.on("vuex-subscribe", (event) => {
   console.log(["subscribed"]);
   subscribeWindow = event.sender;
-})
+});
 
-ipcMain.on('vuex-mutation', (event, mutation) => {
+ipcMain.on("vuex-mutation", (event, mutation) => {
   if (subscribeWindow) {
-    subscribeWindow.send('vuex-mutation', mutation);
+    subscribeWindow.send("vuex-mutation", mutation);
   }
-})
+});
 
-app.on('ready', createWindow)
+app.on("ready", createWindow);
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit()
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") {
+    app.quit();
   }
-})
+});
 
-app.on('activate', () => {
+app.on("activate", () => {
   if (mainWindow === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
 
 /**
  * Auto Updater

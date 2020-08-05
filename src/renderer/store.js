@@ -1,9 +1,11 @@
-import Vue from "vue"
-import Vuex from "vuex"
+import Vue from "vue";
+import Vuex from "vuex";
 
-import { createPersistedState } from "vuex-electron"
+import { createPersistedState } from "vuex-electron";
 
-Vue.use(Vuex)
+import i18n from "./i18n";
+
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -15,7 +17,8 @@ export default new Vuex.Store({
     padding: 100,
     bwSprites: false,
     sprites: [],
-    mode: "3x2"
+    mode: "3x2",
+    locale: navigator.language.split("-")[0],
   },
   mutations: {
     setOption(state, { field, value }) {
@@ -56,17 +59,30 @@ export default new Vuex.Store({
         scale: 2.5,
         padding: 100,
         bwSprites: false,
-        sprites: [],
-        mode: "3x2"
+        mode: "3x2",
       };
       Object.keys(defaultState).forEach((key) => {
-        Vue.set(state, key, defaultState[key])
-      })
-    }
+        Vue.set(state, key, defaultState[key]);
+      });
+    },
+    clearSprites(state) {
+      Vue.set(state, "sprites", []);
+    },
+    setLocale(state, lang) {
+      i18n.locale = lang;
+      Vue.set(state, "locale", lang);
+    },
   },
   plugins: [
     createPersistedState({
-      whitelist: ["setOption", "addSprite", "toLeftSprite", "toRightSprite", "deleteSprite"]
+      whitelist: [
+        "setOption",
+        "addSprite",
+        "toLeftSprite",
+        "toRightSprite",
+        "deleteSprite",
+        "setLocale",
+      ],
     }),
   ],
-})
+});

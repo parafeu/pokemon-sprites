@@ -1,5 +1,5 @@
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/bootstrap-vue/src/index.scss';
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/bootstrap-vue/src/index.scss";
 
 html,
 body {
@@ -35,38 +35,40 @@ body {
   display: grid;
   grid-gap: 1%;
 
-  > *{
+  > * {
     position: relative;
   }
-  
-  &.three_two{
+
+  &.three_two {
     grid-template-columns: repeat(3, auto);
     grid-template-rows: repeat(2, auto);
   }
 
-  &.two_three{
+  &.two_three {
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(3, auto);
   }
 
-  &.one_six{
+  &.one_six {
     grid-template-columns: repeat(1, auto);
     grid-template-rows: repeat(6, auto);
   }
 
-  &.six_one{
+  &.six_one {
     grid-template-columns: repeat(6, auto);
     grid-template-rows: repeat(1, auto);
   }
 }
 
-
-
 .settings-button {
   min-width: 150px;
 }
 
-.segoe-icon{
+.clear-button {
+  min-width: 180px;
+}
+
+.segoe-icon {
   font-family: "Segoe MDL2 Assets";
   color: white;
   height: 32px;
@@ -75,17 +77,19 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 0.7rem;
-  opacity: .6;
+  opacity: 0.6;
   -webkit-user-select: none;
   -webkit-user-drag: none;
   -webkit-app-region: no-drag;
   cursor: default;
-  &:hover{
+  &:hover {
     opacity: 1;
     background-color: rgba(255, 255, 255, 0.2);
   }
 
-  &.s-close:hover, &.s-close:focus, &.s-close:active{
+  &.s-close:hover,
+  &.s-close:focus,
+  &.s-close:active {
     background-color: #cc202e !important;
   }
 }
