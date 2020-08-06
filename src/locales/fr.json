@@ -1,0 +1,17 @@
+{
+  "transparent_background": "Fond transparent",
+  "add_pokemon": "Ajouter un pokémon",
+  "clear_sprites": "Effacer les sprites",
+  "settings": "Paramètres",
+  "default_values": "Valeurs par défaut",
+  "change_pokeball": "Choisir un fichier pour changer le fond pokéball (png, jpg, svg)",
+  "change_pokeball_drop": "Déposer un fichier pour changer le fond pokéball (png, jpg, svg)",
+  "browse": "Parcourir",
+  "pokeball_size": "Taille du fond pokéball",
+  "sprites_size": "Taille des sprites",
+  "gap_between_pokeballs": "Espacement entre les pokéballs",
+  "padding_around_sprite_zone": "Espacement autour de la zone des sprites ( pour éviter les coupures )",
+  "sprites_5g": "Sprites 5G",
+  "display_mode": "Mode d'affichage",
+  "unsupported_format": "Format non supporté"
+}
