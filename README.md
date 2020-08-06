@@ -2,6 +2,8 @@
 
 > Une petit logiciel permettant d'afficher les sprites des pokémon que souhaite afficher un streamer pokémon
 
+> A little software to display the pokémon sprites that a pokémon streamer wants to display
+
 <p align="center">
   <img width="500" src="https://i.imgur.com/mlQmCao.png"/>
   <img width="500" src="https://i.imgur.com/3uRnbQT.png"/>
